@@ -49,7 +49,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
             Internal_Access_Level: 09
           </div>
           <div className="mt-4 text-xs text-slate-500 font-mono">
-            > AUTHENTICATION_REQUIRED
+            {'>'} AUTHENTICATION_REQUIRED
           </div>
         </div>
 
