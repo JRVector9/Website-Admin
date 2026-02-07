@@ -53,10 +53,32 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, onConfigChange,
     }
   };
 
-  const saveConfig = () => {
-    localStorage.setItem('v9_site_config', JSON.stringify(tempConfig));
-    onConfigChange(tempConfig);
-    alert('SYSTEM_CONFIG_SYNCHRONIZED: 모든 텍스트 변경사항이 반영되었습니다.');
+  const saveConfig = async () => {
+    try {
+      // Save to localStorage (for admin panel preview)
+      localStorage.setItem('v9_site_config', JSON.stringify(tempConfig));
+      onConfigChange(tempConfig);
+
+      // Save to Upstash (for main website)
+      const token = localStorage.getItem('v9_admin_token');
+      const response = await fetch('/api/save-config', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(tempConfig)
+      });
+
+      if (response.ok) {
+        alert('✅ SYSTEM_CONFIG_SYNCHRONIZED: 모든 텍스트 변경사항이 메인 사이트에 반영되었습니다.');
+      } else {
+        alert('⚠️ CONFIG_SYNC_WARNING: 로컬 저장은 완료되었으나 서버 동기화 실패. 다시 시도해주세요.');
+      }
+    } catch (error) {
+      console.error('Config save error:', error);
+      alert('⚠️ CONFIG_SAVE_ERROR: 설정 저장 중 오류가 발생했습니다.');
+    }
   };
 
   const updateStatus = (id: number, status: Inquiry['status']) => {
