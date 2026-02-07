@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VECTOR NINE - ADMIN CONSOLE</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Courier New', monospace;
+      background: #050505;
+      color: #e2e8f0;
+    }
+
+    .retro-text {
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .glow-orange {
+      text-shadow: 0 0 10px rgba(255, 112, 67, 0.6), 0 0 20px rgba(255, 112, 67, 0.4);
+    }
+
+    .border-glow-orange {
+      box-shadow: 0 0 15px rgba(255, 112, 67, 0.1);
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
